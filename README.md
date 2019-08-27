@@ -74,7 +74,3 @@ Some resources you may find useful:
     - [response.end()](https://nodejs.org/api/http.html#http_response_end_data_encoding_callback)
 - The File System's [readFile() method](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback)
 - [Different MIME Types/File types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)
-
-
-
-

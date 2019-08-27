@@ -7,7 +7,16 @@ var http = require('http'),
 var listingData, server;
 
 var requestHandler = function(request, response) {
-  var parsedUrl = url.parse(request.url);
+  var parsedUrl = url.parse(request.url).pathname;
+
+  if (parsedUrl == '/listings'){
+    response.end(listingData);
+  }
+  else{
+    response.writeHead(404);
+    response.end('Bad gateway error');
+  }
+    
 
   /*
     Your request handler should send listingData in the JSON format as a response if a GET request 
@@ -37,15 +46,21 @@ fs.readFile('listings.json', 'utf8', function(err, data) {
     HINT: Read up on JSON parsing Node.js
    */
 
-    //Check for errors
-  
+  //Check for errors
+  if(err){
+    throw err;
+  } 
 
-   //Save the sate in the listingData variable already defined
-  
+  //Save the sate in the listingData variable already defined
+  listingData = data;
 
   //Creates the server
-  
-  //Start the server
+  server = http.createServer(requestHandler);
 
+  //Start the server
+  server.listen(port, function() {
+    //once the server is listening, this callback function is executed
+    console.log('Server listening on: http://localhost:' + port);
+  });
 
 });
